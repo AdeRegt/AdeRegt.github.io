@@ -1,0 +1,100 @@
+<html>
+    <head>
+        <title>CV - Alexandros de Regt</title>
+        <style>
+            body{
+                position: absolute;
+            }
+        </style>
+    </head>
+    <body style="background:  radial-gradient( aqua,blueviolet)" oncontextmenu="return false">
+        
+        
+        <script>
+            
+            var int33 = 1;
+            createImage("Contact","Contact.html","https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/X-office-address-book.svg/48px-X-office-address-book.svg.png",600,360);
+            createImage("Opleiding","Opleiding.html","https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/History.svg/48px-History.svg.png",600,360);
+            createImage("Werkervaring","Werkervaring.html","https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Applications-development.svg/48px-Applications-development.svg.png",600,360);
+            
+            var imx = 0;
+            function createImage(title,content,graphics,w,h){
+                var alink = document.createElement("div");
+                alink.style.textAlign = "center";
+                alink.style.zIndex = "1";
+                alink.style.width = "80px";
+                alink.style.height = "80px";
+                var image = document.createElement("img");
+                image.style.textAlign = "center";
+                image.src = graphics;
+                alink.appendChild(image);
+                var label = document.createElement("label");
+                label.style.textAlign = "center";
+                label.innerHTML = title;
+                alink.appendChild(label);
+                document.body.appendChild(alink);
+                alink.onclick = function(e){
+                    createWindow(title,content,w,h);
+                }
+            }
+            
+            
+            
+            function createWindow(title,content,w,h){
+                var div = document.createElement("div");
+                div.style.position = "absolute";
+                div.style.width = w+"px";
+                div.style.height = h+"px";
+                div.style.border = "solid black 1px";
+                div.style.backgroundColor = "white";
+                div.style.boxShadow = "1px 1px 5px #888888";
+                var titlebar = document.createElement("div");
+                var tit = document.createElement("label");
+                var label = document.createElement("img");
+                label.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Gnome-view-refresh.svg/20px-Gnome-view-refresh.svg.png";
+                titlebar.appendChild(label);
+                tit.style.position = "absolute";
+                tit.style.left = "20px";
+                titlebar.appendChild(tit);
+                div.appendChild(titlebar);
+                titlebar.style.height = "20px";
+                titlebar.style.width = w+"px";
+                tit.innerHTML = title;
+                var divmove = function(e){
+                    div.style.top = e.clientY+'px';
+                    div.style.left = e.clientX+'px';
+                }
+                tit.addEventListener('mousedown',function(e){
+                    window.addEventListener('mousemove',divmove,true);
+                },false);
+                window.addEventListener('mouseup',function(e){
+                    window.removeEventListener('mousemove',divmove,true);
+                },false);
+                var closebutton = document.createElement("img");
+                closebutton.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Gnome-window-close.svg/30px-Gnome-window-close.svg.png";
+                titlebar.appendChild(closebutton);
+                titlebar.style.position = "absolute";
+                closebutton.style.backgroundColor = "white";
+                closebutton.style.width = "30px";
+                closebutton.style.textAlign = "center";
+                closebutton.style.height = "20px";
+                closebutton.style.right = "0px";
+                closebutton.style.top = "0px";
+                closebutton.innerHTML = "X";
+                closebutton.onmouseover = function(e){closebutton.style.backgroundColor = "red";closebutton.style.color = "white";};
+                closebutton.onmouseout = function(e){closebutton.style.backgroundColor = "white";closebutton.style.color = "black";};
+                closebutton.onclick = function(e){document.body.removeChild(div);};
+                closebutton.style.position = "absolute";
+                document.body.appendChild(div);
+                var iframestuff = document.createElement("iframe");
+                iframestuff.style.position = "absolute";
+                iframestuff.style.top = "21px";
+                iframestuff.style.width = w+"px";
+                iframestuff.style.height = (h-21)+"px";
+                iframestuff.style.border = "none";
+                iframestuff.src = content;
+                div.appendChild(iframestuff);
+            }
+        </script>
+    </body>
+</html>
