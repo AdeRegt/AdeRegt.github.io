@@ -1,0 +1,22 @@
+.tabbar{
+    background-color: gainsboro;
+    width: 100%;
+}
+
+.tabelement{
+    border-bottom: solid black 1px;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    background-color: inherit;
+    /*float: right;*/
+    padding: 14px 16px;
+}
+
+.tabje{
+    border-bottom: solid black 1px;
+    border-left: solid black 1px;
+    border-right: solid black 1px;
+    border-top: none;
+    display: none;
+}

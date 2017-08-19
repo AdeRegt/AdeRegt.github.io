@@ -5,6 +5,10 @@
             body{
                 position: absolute;
             }
+            
+            .titlebars{
+                background: linear-gradient(to right, blue , white);
+            }
         </style>
     </head>
     <body style="background:  radial-gradient( aqua,blueviolet)" oncontextmenu="return false">
@@ -18,6 +22,12 @@
             createImage("Werkervaring","Werkervaring.html","https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Applications-development.svg/48px-Applications-development.svg.png",600,360);
             
             var imx = 0;
+            
+            document.body.ondrag = function(e){
+                e.preventDefault();
+                return false;
+            }
+            
             function createImage(title,content,graphics,w,h){
                 var alink = document.createElement("div");
                 alink.style.textAlign = "center";
@@ -49,14 +59,21 @@
                 div.style.backgroundColor = "white";
                 div.style.boxShadow = "1px 1px 5px #888888";
                 var titlebar = document.createElement("div");
+                var draggable = document.createElement("div");
                 var tit = document.createElement("label");
                 var label = document.createElement("img");
                 label.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Gnome-view-refresh.svg/20px-Gnome-view-refresh.svg.png";
                 titlebar.appendChild(label);
+                draggable.style.position = "absolute";
+                draggable.style.cursor = "move";
+                draggable.classList.add("titlebars");
+                draggable.style.width = (w-30)+"px";
+                draggable.style.height = "20px";
                 tit.style.position = "absolute";
                 tit.style.left = "20px";
                 titlebar.appendChild(tit);
-                div.appendChild(titlebar);
+                div.appendChild(draggable);
+                draggable.appendChild(titlebar);
                 titlebar.style.height = "20px";
                 titlebar.style.width = w+"px";
                 tit.innerHTML = title;
@@ -64,17 +81,18 @@
                     div.style.top = e.clientY+'px';
                     div.style.left = e.clientX+'px';
                 }
-                tit.addEventListener('mousedown',function(e){
+                draggable.addEventListener('mousedown',function(e){
                     window.addEventListener('mousemove',divmove,true);
                 },false);
                 window.addEventListener('mouseup',function(e){
                     window.removeEventListener('mousemove',divmove,true);
                 },false);
+//                titlebar.appendChild(draggable);
                 var closebutton = document.createElement("img");
                 closebutton.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Gnome-window-close.svg/30px-Gnome-window-close.svg.png";
-                titlebar.appendChild(closebutton);
+                div.appendChild(closebutton);
                 titlebar.style.position = "absolute";
-                closebutton.style.backgroundColor = "white";
+                closebutton.style.backgroundColor = "inherit";
                 closebutton.style.width = "30px";
                 closebutton.style.textAlign = "center";
                 closebutton.style.height = "20px";
@@ -82,7 +100,7 @@
                 closebutton.style.top = "0px";
                 closebutton.innerHTML = "X";
                 closebutton.onmouseover = function(e){closebutton.style.backgroundColor = "red";closebutton.style.color = "white";};
-                closebutton.onmouseout = function(e){closebutton.style.backgroundColor = "white";closebutton.style.color = "black";};
+                closebutton.onmouseout = function(e){closebutton.style.backgroundColor = "inherit";closebutton.style.color = "black";};
                 closebutton.onclick = function(e){document.body.removeChild(div);};
                 closebutton.style.position = "absolute";
                 document.body.appendChild(div);
