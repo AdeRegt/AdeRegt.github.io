@@ -1,0 +1,23 @@
+<html>
+    <body>
+        <input type="text" id="resax" autofocus="">
+        <script>
+            var gewenstresultaat;
+            
+            function check(){
+//                window.alert("Gewenst = \""+gewenstresultaat+"\"\nGezien = \""+resax.value+"\"\nDus zij zijn: "+(gewenstresultaat===resax.value));
+                return resax.value === gewenstresultaat;
+            }
+            
+            function setup(a){
+                gewenstresultaat = a;
+            }
+            
+            function trigger(e){
+                resax.onchange = function(z){
+                    e();
+                }
+            }
+        </script>
+    </body>
+</html>

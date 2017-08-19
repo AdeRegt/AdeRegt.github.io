@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sanderslando Overhoorder</title>
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <style>
+            .statusbar{
+                background-color: #333;
+                font-family: Arial;
+                bottom: 0px;
+                position: fixed;
+                width:100%;
+                left: 0px;
+                color: white;
+            }
+            
+            
+            .infomenubar{
+                background-color: #333;
+                font-family: Arial;
+                width:100%;
+                position: relative;
+            }
+            
+            .menubar{
+                background-color: #333;
+                font-family: Arial;
+                top: 0px;
+                position: fixed;
+                width:100%;
+                left: 0px;
+            }
+            
+            .menubarmenu{
+                float: left;
+                overflow: hidden;
+            }
+            
+            .menubarmenubutton{
+                cursor: default;
+                font-size: 16px;    
+                border: none;
+                outline: none;
+                color: white;
+                padding: 14px 16px;
+                background-color: inherit;
+            }
+            
+            
+            
+            .menubarmenucontainer{
+                cursor: default;
+                display: none;
+                position: absolute;
+                background-color: #f9f9f9;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+            
+            
+            .menubarmenu:hover .menubarmenucontainer{
+                display: block;
+            }
+            
+            .menubarmenucontent{
+                float: none;
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+                vertical-align: central;
+            }
+            
+            
+            .menubarmenucontent:hover{
+                background-color: aquamarine;
+            }
+            
+            
+        </style>
+    </head>
+    <body>
+        
+        <div class="menubar">
+            <div class="menubarmenu" id="filedropdown">
+                <button class="menubarmenubutton">File</button>
+                <div class="menubarmenucontainer">
+                    <div onclick="fxtrigger.innerHTML = '';switchTo(mainscreen0)" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Gnome-bookmark-new.svg/20px-Gnome-bookmark-new.svg.png" width="20" height="20"> Create a new testformat</div>
+                    <a class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Gnome-document-page-setup.svg/20px-Gnome-document-page-setup.svg.png"> Edit a testformat</a>
+                    <br/>
+                    <div onclick="restoreAllWindows();openfilesystem()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Gnome-document-open.svg/20px-Gnome-document-open.svg.png"> Take test from disk</div>
+                    <div onclick="restoreAllWindows();openurl()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Gnome-document-open.svg/20px-Gnome-document-open.svg.png"> Take test from URL</div>
+                </div>
+            </div>
+            <div class="menubarmenu" id="editdropdown">
+                <button class="menubarmenubutton">Edit</button>
+                <div class="menubarmenucontainer">
+                    <a class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Gnome-insert-text.svg/20px-Gnome-insert-text.svg.png"> Latin</a>
+                    <br/>
+                    <div id="intestmenu" style="display: none">
+                    <div onclick="checkandnext()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Gnome-document-send.svg/20px-Gnome-document-send.svg.png"> Next question</div>
+                    <div onclick="" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Gnome-document-send.svg/20px-Gnome-document-send.svg.png"> Stop test</div>
+                    <br/>
+                    </div>
+                    <a class="menubarmenucontent" onclick="toFullscreen()"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Gnome-view-fullscreen.svg/20px-Gnome-view-fullscreen.svg.png"> Fullscreen</a>
+                </div>
+            </div>
+            <div class="menubarmenu" id="helpdropdown">
+                <button class="menubarmenubutton">Help</button>
+                <div class="menubarmenucontainer">
+                    <a class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Gnome-help-contents.svg/20px-Gnome-help-contents.svg.png"> Help</a>
+                    <a class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Utilities-system-monitor.svg/20px-Utilities-system-monitor.svg.png"> Report an Issue</a>
+                    <div onclick="switchTo(mainscreen1);" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Tango-style_info_icon.svg/20px-Tango-style_info_icon.svg.png"> About</div>
+                </div>
+            </div>
+        </div>
+        <p>.</p>
+        <p>.</p>
+        <div style="display: none" id="mainscreen0">
+            <div id="fxtrigger"></div>
+            <div class="infomenubar">
+                <div class="menubarmenu">
+                    <button class="menubarmenubutton">File</button>
+                    <div class="menubarmenucontainer">
+                        <div onclick="fxtrigger.innerHTML = '';switchTo(mainscreen0)" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Gnome-bookmark-new.svg/20px-Gnome-bookmark-new.svg.png" width="20" height="20"> Create a new testformat</div>
+                        <a class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Gnome-document-page-setup.svg/20px-Gnome-document-page-setup.svg.png"> Edit a testformat</a>
+                        <br/>
+                        <div onclick="restoreAllWindows();openfilesystem()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Gnome-document-open.svg/20px-Gnome-document-open.svg.png"> Take test from disk</div>
+                        <div onclick="restoreAllWindows();openurl()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Gnome-document-open.svg/20px-Gnome-document-open.svg.png"> Take test from URL</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="display: none" id="mainscreen1">hi</div>
+        <div style="display: none" id="mainscreen2">
+            <fieldset>
+                <legend>Duration</legend>
+                
+            </fieldset>
+            <h1>Press start</h1>
+            <button>OK</button>
+        </div>
+        <div style="display: none" id="mainscreen3">
+            <h1 id="vraagstelling"></h1>
+            <iframe id="questionframe" style="border:none"></iframe>
+        </div>
+        <div class="statusbar">Copyright Alexandros de Regt | Actual score: <label id="scorebord"></label></div>
+        <script>
+            var rawdoc;
+            var spldoc;
+            var maxquestioncount;
+            var randomint;
+            var tracebit;
+            var varbit;
+            var goed = 0;
+            var fout = 0;
+            var totaal = 0;
+            
+            
+            function next(){
+                randomint = (Math.round(Math.random())*maxquestioncount)-1;
+                var vx = getValue(randomint+".question");
+                if(vx===null||vx==="null"){
+                    next();
+                }
+                vraagstelling.innerHTML = vx;
+                if(vraagstelling.innerHTML==="null"){
+                    next();
+                }
+                tracebit = getValue(randomint+".answer.class");
+                varbit = getValue(randomint+".answer.string");
+                questionframe.src = (document.URL).replace("/main.html","").replace("\\main.html","")+"/view/"+tracebit+".html";
+                questionframe.onload = function(e){
+                    try{
+                        document.getElementById("questionframe").contentWindow.setup(varbit);
+                        document.getElementById("questionframe").contentWindow.trigger(checkandnext);
+                        document.getElementById("questionframe").contentWindow.focus();
+                    }catch(x){
+                        next();
+                    }
+                };
+            }
+            
+            function getValue(msg){
+                for(var i = 0 ; i < spldoc.length ; i++){
+                    var deze = spldoc[i].split("=");
+                    if(deze[0]===msg){
+                        return deze[1].replace("\n","").trim();
+                    }
+                }
+                return null;
+            }
+            
+            function decodeRawDoc(){
+                intestmenu.style.display = "block";
+                rawdoc = rawdoc.replace("\r","").replace("\t","").trim();
+                spldoc = rawdoc.split("\n");
+                maxquestioncount = 0;
+                while(true){
+                    if(getValue(maxquestioncount+".question")===null){
+                        break;
+                    }
+                    maxquestioncount++;
+                }
+                goed = 0;
+                fout = 0;
+                totaal = 0;
+                switchTo(mainscreen3);
+                next();
+            }
+            
+            function checkandnext(){
+                if(document.getElementById("questionframe").contentWindow.check()){
+                    goed++;
+                }else{
+                    fout++;
+                }
+                totaal++;
+                var score = (goed/totaal)*10;
+                if(score>54){
+                    scorebord.style.color = "green";
+                }else{
+                    scorebord.style.color = "red";
+                }
+                scorebord.innerHTML = score;
+                next();
+            }
+            
+            /**
+             *  Opens file from url and store it to general string
+             * @returns {undefined}
+             */
+            function openurl(){
+                $.get(window.prompt("Giveup url"), function(response) {
+                     rawdoc = response;
+                     decodeRawDoc();
+                });
+            }
+
+            
+            /**
+             *  Opens file on hdd and store it to general string
+             * @returns {undefined}
+             */
+            function openfilesystem(){
+                var file = document.createElement("input");
+                file.type = "file";
+                file.addEventListener('change',function(e){
+                    var f = e.target.files[0];
+                    var reader = new FileReader();
+                    reader.onload = function(e){
+                        rawdoc = e.target.result;
+                        decodeRawDoc();
+                    };
+                    reader.readAsText(f);
+                },false);
+                file.click();
+                
+            }
+            
+            function switchTo(to){
+                restoreAllWindows();
+                to.style.display = "inline";
+            }
+            
+            function restoreAllWindows(){
+                intestmenu.style.display = "none";
+                for(var i = 0 ; i < 100 ; i++){
+                    var tt = document.getElementById("mainscreen"+i);
+                    if(tt!==null){
+                        tt.style.display = "none";
+                    }
+                }
+            }
+            
+            /**
+             * Parameter extractor function.
+             * from: https://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript
+             * @param {type} name of parameter
+             * @returns {unresolved} value of parameter
+             */
+            function getURLParameter(name) {
+                return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+            }
+            
+            /**
+             * Go fullscreen
+             * From: https://stackoverflow.com/questions/3900701/onclick-go-full-screen
+             * @returns {undefined}
+             */
+            function toFullscreen(){
+                if ((document.fullScreenElement && document.fullScreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+                 if (document.documentElement.requestFullScreen) {  
+                   document.documentElement.requestFullScreen();  
+                 } else if (document.documentElement.mozRequestFullScreen) {  
+                   document.documentElement.mozRequestFullScreen();  
+                 } else if (document.documentElement.webkitRequestFullScreen) {  
+                   document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);  
+                 }  
+               } else {  
+                 if (document.cancelFullScreen) {  
+                   document.cancelFullScreen();  
+                 } else if (document.mozCancelFullScreen) {  
+                   document.mozCancelFullScreen();  
+                 } else if (document.webkitCancelFullScreen) {  
+                   document.webkitCancelFullScreen();  
+                 }  
+               } 
+            }
+        </script>
+    </body>
+</html>
