@@ -1,0 +1,24 @@
+<html>
+    <body>
+        <input id="d" type="text" style="width: 100%" placeholder="Question">
+        
+        <input id="e" type="text" style="width: 100%" placeholder="Exactly one answer">
+        
+        <script>
+            
+            var number = 0;
+            
+            function load(a,b,c){
+                number = a;
+                d.value = b;
+                e.value = c;
+            }
+            
+            function saveX(){
+                var xmo = number+".question="+d.value+"\n"+number+".answer.class=org.sanderslando.overhoorder.type.questions.singleanswer.SingleAnswerController\n"+number+".answer.string="+e.value;
+                return xmo;
+            }
+            
+        </script>
+    </body>
+</html>

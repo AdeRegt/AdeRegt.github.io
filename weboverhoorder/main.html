@@ -55,7 +55,7 @@
                 background-color: #f9f9f9;
                 min-width: 160px;
                 box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-                z-index: 1;
+                z-index: 10;
             }
             
             
@@ -87,8 +87,11 @@
             <div class="menubarmenu" id="filedropdown">
                 <button class="menubarmenubutton">File</button>
                 <div class="menubarmenucontainer">
-                    <div onclick="fxtrigger.innerHTML = '';switchTo(mainscreen0)" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Gnome-bookmark-new.svg/20px-Gnome-bookmark-new.svg.png" width="20" height="20"> Create a new testformat</div>
+                    <div onclick="newFile()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Gnome-bookmark-new.svg/20px-Gnome-bookmark-new.svg.png" width="20" height="20"> Create a new testformat</div>
                     <a class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Gnome-document-page-setup.svg/20px-Gnome-document-page-setup.svg.png"> Edit a testformat</a>
+                    <div id="ineditmenu" style="display: none">
+                        <div onclick="saveFile()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Gnome-bookmark-new.svg/20px-Gnome-bookmark-new.svg.png" width="20" height="20"> Save testformat</div>
+                    </div>
                     <br/>
                     <div onclick="restoreAllWindows();openfilesystem()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Gnome-document-open.svg/20px-Gnome-document-open.svg.png"> Take test from disk</div>
                     <div onclick="restoreAllWindows();openurl()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Gnome-document-open.svg/20px-Gnome-document-open.svg.png"> Take test from URL</div>
@@ -119,16 +122,12 @@
         <p>.</p>
         <p>.</p>
         <div style="display: none" id="mainscreen0">
-            <div id="fxtrigger"></div>
+            <div id="fxtrigger" style="width: 100px"></div>
             <div class="infomenubar">
-                <div class="menubarmenu">
-                    <button class="menubarmenubutton">File</button>
+                <div class="menubarmenu" style="background-color: #333">
+                    <button class="menubarmenubutton">Add</button>
                     <div class="menubarmenucontainer">
-                        <div onclick="fxtrigger.innerHTML = '';switchTo(mainscreen0)" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Gnome-bookmark-new.svg/20px-Gnome-bookmark-new.svg.png" width="20" height="20"> Create a new testformat</div>
-                        <a class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Gnome-document-page-setup.svg/20px-Gnome-document-page-setup.svg.png"> Edit a testformat</a>
-                        <br/>
-                        <div onclick="restoreAllWindows();openfilesystem()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Gnome-document-open.svg/20px-Gnome-document-open.svg.png"> Take test from disk</div>
-                        <div onclick="restoreAllWindows();openurl()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Gnome-document-open.svg/20px-Gnome-document-open.svg.png"> Take test from URL</div>
+                        <div onclick="addQuestion('org.sanderslando.overhoorder.type.questions.singleanswer.SingleAnswerController')" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Gnome-bookmark-new.svg/20px-Gnome-bookmark-new.svg.png" width="20" height="20"> Single answer</div>
                     </div>
                 </div>
             </div>
@@ -157,6 +156,43 @@
             var goed = 0;
             var fout = 0;
             var totaal = 0;
+            
+            var quam = 0;
+            
+            function saveFile(){
+                var content = "";
+                for(var i = 0 ; i < quam ; i++){
+                    content += document.getElementById("XXX"+i).contentWindow.saveX()+"\n";
+                }
+                window.alert(content);
+                var blooper = new Blob([content], {type: "octet/stream"});
+                var url = window.URL.createObjectURL(blooper);
+                var a = document.createElement("a");
+                a.href = url;
+                a.download = window.prompt("Which name?")+".stf";
+                a.click();
+            }
+            
+            function newFile(){
+                fxtrigger.innerHTML = '';
+                switchTo(mainscreen0);
+                quam = 0;
+                ineditmenu.style.display = "block";
+            }
+            
+            function addQuestion(type){
+                var target = (document.URL).replace("/main.html","").replace("\\main.html","")+"/edit/"+type+".html";
+                var dict = document.createElement("iframe");
+                fxtrigger.appendChild(dict);
+                dict.src = target;
+                dict.style.border = "solid black 1px";
+                dict.className = "dict";
+                var nerd = quam++;
+                dict.onload = function(e){
+                    dict.contentWindow.load(nard,'','');
+                };
+                dict.id = "XXX"+nerd;
+            }
             
             
             function next(){
@@ -267,6 +303,7 @@
             
             function restoreAllWindows(){
                 intestmenu.style.display = "none";
+                ineditmenu.style.display = "none";
                 for(var i = 0 ; i < 100 ; i++){
                     var tt = document.getElementById("mainscreen"+i);
                     if(tt!==null){
