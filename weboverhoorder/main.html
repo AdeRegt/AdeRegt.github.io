@@ -88,7 +88,7 @@
                 <button class="menubarmenubutton">File</button>
                 <div class="menubarmenucontainer">
                     <div onclick="newFile()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Gnome-bookmark-new.svg/20px-Gnome-bookmark-new.svg.png" width="20" height="20"> Create a new testformat</div>
-                    <a class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Gnome-document-page-setup.svg/20px-Gnome-document-page-setup.svg.png"> Edit a testformat</a>
+                    <div onclick="newOpenFile()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Gnome-document-page-setup.svg/20px-Gnome-document-page-setup.svg.png"> Edit a testformat</div>
                     <div id="ineditmenu" style="display: none">
                         <div onclick="saveFile()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Gnome-bookmark-new.svg/20px-Gnome-bookmark-new.svg.png" width="20" height="20"> Save testformat</div>
                     </div>
@@ -160,12 +160,15 @@
             
             var quam = 0;
             
+            function newOpenFile(){
+                
+            }
+            
             function saveFile(){
                 var content = "";
                 for(var i = 0 ; i < quam ; i++){
                     content += document.getElementById("XXX"+i).contentWindow.saveX()+"\n";
                 }
-                window.alert(content);
                 var blooper = new Blob([content], {type: "octet/stream"});
                 var url = window.URL.createObjectURL(blooper);
                 var a = document.createElement("a");
