@@ -133,7 +133,18 @@
                 </div>
             </div>
         </div>
-        <div style="display: none" id="mainscreen1">hi</div>
+        <div style="display: none" id="mainscreen1">
+            <h1>Copyright Alexandros de Regt 2011-<label id="agalabel"></label></h1>
+            <p>Program created by Alexandros de Regt</p>
+            <br/>
+            <p>Thanks allot to:</p>
+            <br/>
+            <p><b>Translating</b></p>
+            <p><i>Not supported yet</i></p>
+            <br/>
+            <p><b>Debugging</b></p>
+            <p>Juancarlos Garcia</p>
+        </div>
         <div style="display: none" id="mainscreen2">
             <fieldset>
                 <legend>Duration</legend>
@@ -160,8 +171,22 @@
             
             var quam = 0;
             
+            agalabel.innerHTML = new Date().getFullYear()+"";
+            
             function newOpenFile(){
-                
+                newFile();
+                var file = document.createElement("input");
+                file.type = "file";
+                file.addEventListener('change',function(e){
+                    var f = e.target.files[0];
+                    var reader = new FileReader();
+                    reader.onload = function(e){
+                        rawdoc = e.target.result;
+                        
+                    };
+                    reader.readAsText(f);
+                },false);
+                file.click();
             }
             
             function saveFile(){
