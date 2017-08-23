@@ -128,7 +128,7 @@
                 <div class="menubarmenu" style="background-color: #333">
                     <button class="menubarmenubutton">Add</button>
                     <div class="menubarmenucontainer">
-                        <div onclick="addQuestion('org.sanderslando.overhoorder.type.questions.singleanswer.SingleAnswerController')" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Gnome-bookmark-new.svg/20px-Gnome-bookmark-new.svg.png" width="20" height="20"> Single answer</div>
+                        <div onclick="addQuestion('org.sanderslando.overhoorder.type.questions.singleanswer.SingleAnswerController','','')" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Gnome-bookmark-new.svg/20px-Gnome-bookmark-new.svg.png" width="20" height="20"> Single answer</div>
                     </div>
                 </div>
             </div>
@@ -182,7 +182,10 @@
                     var reader = new FileReader();
                     reader.onload = function(e){
                         rawdoc = e.target.result;
-                        
+                        extractDocInfo();
+                        for(var i = 0 ; i < maxquestioncount ; i++){
+                            addQuestion(getValue(i+".answer.class"),getValue(i+".question"),getValue(i+".answer.string"));
+                        }
                     };
                     reader.readAsText(f);
                 },false);
@@ -209,7 +212,7 @@
                 ineditmenu.style.display = "block";
             }
             
-            function addQuestion(type){
+            function addQuestion(type,A,B){
                 var target = (document.URL).replace("/main.html","").replace("\\main.html","")+"/edit/"+type+".html";
                 var dict = document.createElement("iframe");
                 fxtrigger.appendChild(dict);
@@ -218,7 +221,7 @@
                 dict.className = "dict";
                 var nerd = quam++;
                 dict.onload = function(e){
-                    dict.contentWindow.load(nard,'','');
+                    dict.contentWindow.load(nard,A,B);
                 };
                 dict.id = "XXX"+nerd;
             }
@@ -258,8 +261,7 @@
                 return null;
             }
             
-            function decodeRawDoc(){
-                intestmenu.style.display = "block";
+            function extractDocInfo(){
                 rawdoc = rawdoc.replace("\r","").replace("\t","").trim();
                 spldoc = rawdoc.split("\n");
                 maxquestioncount = 0;
@@ -272,6 +274,11 @@
                 goed = 0;
                 fout = 0;
                 totaal = 0;
+            }
+            
+            function decodeRawDoc(){
+                intestmenu.style.display = "block";
+                extractDocInfo();
                 switchTo(mainscreen3);
                 next();
             }
