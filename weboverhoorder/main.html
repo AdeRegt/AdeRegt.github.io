@@ -85,39 +85,39 @@
         
         <div class="menubar">
             <div class="menubarmenu" id="filedropdown">
-                <button class="menubarmenubutton">File</button>
+                <button class="menubarmenubutton"><label id="L0">File</label></button>
                 <div class="menubarmenucontainer">
-                    <div onclick="newFile()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Gnome-bookmark-new.svg/20px-Gnome-bookmark-new.svg.png" width="20" height="20"> Create a new testformat</div>
-                    <div onclick="newOpenFile()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Gnome-document-page-setup.svg/20px-Gnome-document-page-setup.svg.png"> Edit a testformat</div>
+                    <div onclick="newFile()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Gnome-bookmark-new.svg/20px-Gnome-bookmark-new.svg.png" width="20" height="20"> <label id="L1">Create a new testformat</label></div>
+                    <div onclick="newOpenFile()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Gnome-document-page-setup.svg/20px-Gnome-document-page-setup.svg.png"> <label id="L2">Edit a testformat</label></div>
                     <div id="ineditmenu" style="display: none">
-                        <div onclick="saveFile()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Gnome-document-save.svg/20px-Gnome-document-save.svg.png" width="20" height="20"> Save testformat</div>
-                    <div onclick="restoreAllWindows();openfromeditor()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Gnome-document-open.svg/20px-Gnome-document-open.svg.png"> Take test from editor</div>
+                        <div onclick="saveFile()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Gnome-document-save.svg/20px-Gnome-document-save.svg.png" width="20" height="20"> <label id="L3">Save testformat</label></div>
+                    <div onclick="restoreAllWindows();openfromeditor()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Gnome-document-open.svg/20px-Gnome-document-open.svg.png"> <label id="L4">Take test from editor</label></div>
                     </div>
                     
                     <br/>
-                    <div onclick="restoreAllWindows();openfilesystem()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Gnome-document-open.svg/20px-Gnome-document-open.svg.png"> Take test from disk</div>
-                    <div onclick="restoreAllWindows();openurl()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Gnome-document-open.svg/20px-Gnome-document-open.svg.png"> Take test from URL</div>
+                    <div onclick="restoreAllWindows();openfilesystem()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Gnome-document-open.svg/20px-Gnome-document-open.svg.png"> <label id="L5">Take test from disk</label></div>
+                    <div onclick="restoreAllWindows();openurl()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Gnome-document-open.svg/20px-Gnome-document-open.svg.png"> <label id="L6">Take test from URL</label></div>
                 </div>
             </div>
             <div class="menubarmenu" id="editdropdown">
-                <button class="menubarmenubutton">Edit</button>
+                <button class="menubarmenubutton"><label id="L7">Edit</label></button>
                 <div class="menubarmenucontainer">
-                    <a class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Gnome-insert-text.svg/20px-Gnome-insert-text.svg.png"> Latin</a>
+                    <a class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Gnome-insert-text.svg/20px-Gnome-insert-text.svg.png"> <label id="L8">Latin</label></a>
                     <br/>
                     <div id="intestmenu" style="display: none">
-                    <div onclick="checkandnext()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Gnome-document-send.svg/20px-Gnome-document-send.svg.png"> Next question</div>
-                    <div onclick="" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Gnome-document-send.svg/20px-Gnome-document-send.svg.png"> Stop test</div>
+                    <div onclick="checkandnext()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Gnome-document-send.svg/20px-Gnome-document-send.svg.png"> <label id="L9">Next question</label></div>
+                    <div onclick="" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Gnome-document-send.svg/20px-Gnome-document-send.svg.png"> <label id="L10">Stop test</label></div>
                     <br/>
                     </div>
-                    <a class="menubarmenucontent" onclick="toFullscreen()"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Gnome-view-fullscreen.svg/20px-Gnome-view-fullscreen.svg.png"> Fullscreen</a>
+                    <a class="menubarmenucontent" onclick="toFullscreen()"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Gnome-view-fullscreen.svg/20px-Gnome-view-fullscreen.svg.png"> <label id="L11">Fullscreen</label></a>
                 </div>
             </div>
             <div class="menubarmenu" id="helpdropdown">
-                <button class="menubarmenubutton">Help</button>
+                <button class="menubarmenubutton"><label id="L12">Help</label></button>
                 <div class="menubarmenucontainer">
-                    <a class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Gnome-help-contents.svg/20px-Gnome-help-contents.svg.png"> Help</a>
-                    <a class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Utilities-system-monitor.svg/20px-Utilities-system-monitor.svg.png"> Report an Issue</a>
-                    <div onclick="switchTo(mainscreen1);" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Tango-style_info_icon.svg/20px-Tango-style_info_icon.svg.png"> About</div>
+                    <a class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Gnome-help-contents.svg/20px-Gnome-help-contents.svg.png"> <label id="L13">Help</label></a>
+                    <a class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Utilities-system-monitor.svg/20px-Utilities-system-monitor.svg.png"> <label id="L14">Report an Issue</label></a>
+                    <div onclick="switchTo(mainscreen1);" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Tango-style_info_icon.svg/20px-Tango-style_info_icon.svg.png"> <label id="L15">About</label></div>
                 </div>
             </div>
         </div>
@@ -127,9 +127,9 @@
             <div id="fxtrigger" style="width: 100px"></div>
             <div class="infomenubar">
                 <div class="menubarmenu" style="background-color: #333">
-                    <button class="menubarmenubutton">Add</button>
+                    <button class="menubarmenubutton"><label id="L16">Add</label></button>
                     <div class="menubarmenucontainer">
-                        <div onclick="addQuestion('org.sanderslando.overhoorder.type.questions.singleanswer.SingleAnswerController','','')" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Gnome-bookmark-new.svg/20px-Gnome-bookmark-new.svg.png" width="20" height="20"> Single answer</div>
+                        <div onclick="addQuestion('org.sanderslando.overhoorder.type.questions.singleanswer.SingleAnswerController','','')" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Gnome-bookmark-new.svg/20px-Gnome-bookmark-new.svg.png" width="20" height="20"> <label id="L17">Single answer</label></div>
                     </div>
                 </div>
             </div>
@@ -158,7 +158,7 @@
             <h1 id="vraagstelling"></h1>
             <iframe id="questionframe" style="border:none"></iframe>
         </div>
-        <div class="statusbar">Copyright Alexandros de Regt | Actual score: <label id="scorebord"></label></div>
+        <div class="statusbar">Copyright Alexandros de Regt | <label id="L18">Actual score:</label> <label id="scorebord"></label></div>
         <script>
             var rawdoc;
             var spldoc;
@@ -169,10 +169,38 @@
             var goed = 0;
             var fout = 0;
             var totaal = 0;
-            
+            var languages;
             var quam = 0;
             
             agalabel.innerHTML = new Date().getFullYear()+"";
+            
+            try{
+                $.get("lang/"+navigator.language+".taal", function(response) {
+                        var tgv = response.replace("\r","").replace("\t","").trim();
+                        languages = tgv.split("\n");
+                        L0.innerHTML = getLanguage("bestand");
+                        L1.innerHTML = getLanguage("createformat");
+                        L2.innerHTML = getLanguage("editformat");
+                        L3.innerHTML = getLanguage("saveformat");
+                        L4.innerHTML = getLanguage("usetest");
+                        L5.innerHTML = getLanguage("takefromdisk");
+                        L6.innerHTML = getLanguage("takefromurl");
+                        L7.innerHTML = getLanguage("edit");
+                        L8.innerHTML = getLanguage("latin");
+                        L9.innerHTML = getLanguage("nextquestion");
+                        L10.innerHTML = getLanguage("stoptest");
+                        L11.innerHTML = getLanguage("volledigscherm");
+                        L12.innerHTML = getLanguage("help");
+                        L13.innerHTML = getLanguage("help");
+                        L14.innerHTML = getLanguage("report");
+                        L15.innerHTML = getLanguage("about");
+                        L16.innerHTML = getLanguage("toevoegen");
+                        L17.innerHTML = getLanguage("enkelvoudigevraag");
+                        L18.innerHTML = getLanguage("score");
+                });
+            }catch(e){
+                document.write("<p>Laad talen mislukt</p>");
+            }
             
             function openfromeditor(){
                 var content = "";
@@ -264,6 +292,17 @@
             function getValue(msg){
                 for(var i = 0 ; i < spldoc.length ; i++){
                     var deze = spldoc[i].split("=");
+                    if(deze[0]===msg){
+                        return deze[1].replace("\n","").trim();
+                    }
+                }
+                return null;
+            }
+            
+            
+            function getLanguage(msg){
+                for(var i = 0 ; i < languages.length ; i++){
+                    var deze = languages[i].split("=");
                     if(deze[0]===msg){
                         return deze[1].replace("\n","").trim();
                     }
