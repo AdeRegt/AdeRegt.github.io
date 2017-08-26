@@ -175,7 +175,7 @@
             agalabel.innerHTML = new Date().getFullYear()+"";
             
             try{
-                $.get("lang/"+navigator.language+".taal", function(response) {
+                $.get((document.URL).replace("/main.html","").replace("\\main.html","")+"/lang/"+navigator.language+".taal", function(response) {
                         var tgv = response.replace("\r","").replace("\t","").trim();
                         languages = tgv.split("\n");
                         L0.innerHTML = getLanguage("bestand");
