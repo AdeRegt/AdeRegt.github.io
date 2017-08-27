@@ -266,7 +266,8 @@
             
             
             function next(){
-                randomint = (Math.round(Math.random())*maxquestioncount)-1;
+                var lastrnd = randomint;
+                while((randomint=(Math.floor(Math.random()*maxquestioncount)))===lastrnd){}
                 var vx = getValue(randomint+".question");
                 if(vx===null||vx==="null"){
                     next();
@@ -326,9 +327,9 @@
             }
             
             function decodeRawDoc(){
-                intestmenu.style.display = "block";
                 extractDocInfo();
                 switchTo(mainscreen3);
+                intestmenu.style.display = "block";
                 next();
             }
             
