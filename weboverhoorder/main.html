@@ -217,6 +217,16 @@
                 document.write("<p>Laad talen mislukt</p>");
             }
             
+            if(window.confirm("Do you allow Google Analytics to track where you go to in our page? We use it to see how well out software works")){
+                addAnalytics();
+            }
+            
+            function addAnalytics(){
+                var elem = document.createElement("script");
+                elem.innerHTML = "(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', 'UA-103808116-1', 'auto');ga('send', 'pageview');";
+                document.body.appendChild(elem);
+            }
+            
             function loadlanguage(sellang){
                 $.get((document.URL).replace("/main.html","").replace("\\main.html","")+"/lang/"+(sellang.substring(0,2))+".taal", function(response) {
                         var tgv = response.replace("\r","").replace("\t","").trim();
