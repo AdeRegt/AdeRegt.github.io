@@ -112,6 +112,23 @@
                     <a class="menubarmenucontent" onclick="toFullscreen()"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Gnome-view-fullscreen.svg/20px-Gnome-view-fullscreen.svg.png"> <label id="L11">Fullscreen</label></a>
                 </div>
             </div>
+            <div class="menubarmenu" id="languagedropdown">
+                <button class="menubarmenubutton">Language</button>
+                <div class="menubarmenucontainer">
+                    <div onclick="loadlanguage('en')" class="menubarmenucontent">
+                        <img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Flag_of_the_United_Kingdom.svg/20px-Flag_of_the_United_Kingdom.svg.png">
+                         English
+                    </div>
+                    <div onclick="loadlanguage('nl')" class="menubarmenucontent">
+                        <img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Flag_of_the_Netherlands.svg/20px-Flag_of_the_Netherlands.svg.png">
+                         Nederlands
+                    </div>
+                    <div onclick="loadlanguage('fi')" class="menubarmenucontent">
+                        <img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Flag_of_Finland.svg/20px-Flag_of_Finland.svg.png">
+                         Suomen kieli
+                    </div>
+                </div>
+            </div>
             <div class="menubarmenu" id="helpdropdown">
                 <button class="menubarmenubutton"><label id="L12">Help</label></button>
                 <div class="menubarmenucontainer">
@@ -195,7 +212,13 @@
             agalabel.innerHTML = new Date().getFullYear()+"";
             
             try{
-                $.get((document.URL).replace("/main.html","").replace("\\main.html","")+"/lang/"+(navigator.language.substring(0,2))+".taal", function(response) {
+                loadlanguage(navigator.language);
+            }catch(e){
+                document.write("<p>Laad talen mislukt</p>");
+            }
+            
+            function loadlanguage(sellang){
+                $.get((document.URL).replace("/main.html","").replace("\\main.html","")+"/lang/"+(sellang.substring(0,2))+".taal", function(response) {
                         var tgv = response.replace("\r","").replace("\t","").trim();
                         languages = tgv.split("\n");
                         L0.innerHTML = getLanguage("bestand");
@@ -218,8 +241,6 @@
                         L17.innerHTML = getLanguage("enkelvoudigevraag");
                         L18.innerHTML = getLanguage("score");
                 });
-            }catch(e){
-                document.write("<p>Laad talen mislukt</p>");
             }
             
             function openfromeditor(){
