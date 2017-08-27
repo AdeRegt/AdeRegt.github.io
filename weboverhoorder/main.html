@@ -80,6 +80,18 @@
             
             
         </style>
+        <script>
+            
+            if(window.confirm("Do you allow Google Analytics to track where you go to in our page?\nOK - You allow us to count you, see where you from and how long you use our app\nCancel - You do now allow us to do this")){
+                addAnalytics();
+            }
+            
+            function addAnalytics(){
+                var elem = document.createElement("script");
+                elem.src = (document.URL).replace("/main.html","").replace("\\main.html","")+"/analytics.js";
+                document.head.appendChild(elem);
+            } 
+        </script>
     </head>
     <body>
         
@@ -217,15 +229,6 @@
                 document.write("<p>Laad talen mislukt</p>");
             }
             
-            if(window.confirm("Do you allow Google Analytics to track where you go to in our page? We use it to see how well out software works")){
-                addAnalytics();
-            }
-            
-            function addAnalytics(){
-                var elem = document.createElement("script");
-                elem.src = (document.URL).replace("/main.html","").replace("\\main.html","")+"/analytics.js";
-                document.body.appendChild(elem);
-            }
             
             function loadlanguage(sellang){
                 $.get((document.URL).replace("/main.html","").replace("\\main.html","")+"/lang/"+(sellang.substring(0,2))+".taal", function(response) {
