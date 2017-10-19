@@ -99,8 +99,8 @@
             <div class="menubarmenu" id="filedropdown">
                 <button class="menubarmenubutton"><label id="L0">File</label></button>
                 <div class="menubarmenucontainer">
-                    <div onclick="newFile()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Gnome-bookmark-new.svg/20px-Gnome-bookmark-new.svg.png" width="20" height="20"> <label id="L1">Create a new testformat</label></div>
-                    <div onclick="newOpenFile()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Gnome-document-page-setup.svg/20px-Gnome-document-page-setup.svg.png"> <label id="L2">Edit a testformat</label></div>
+                    <div onclick="restoreAllWindows();newFile()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Gnome-bookmark-new.svg/20px-Gnome-bookmark-new.svg.png" width="20" height="20"> <label id="L1">Create a new testformat</label></div>
+                    <div onclick="restoreAllWindows();newOpenFile()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Gnome-document-page-setup.svg/20px-Gnome-document-page-setup.svg.png"> <label id="L2">Edit a testformat</label></div>
                     <div id="ineditmenu" style="display: none">
                         <div onclick="saveFile()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Gnome-document-save.svg/20px-Gnome-document-save.svg.png" width="20" height="20"> <label id="L3">Save testformat</label></div>
                     <div onclick="restoreAllWindows();openfromeditor()" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Gnome-document-open.svg/20px-Gnome-document-open.svg.png"> <label id="L4">Take test from editor</label></div>
@@ -202,10 +202,15 @@
         <div style="display: none" id="mainscreen2">
             <fieldset>
                 <legend>Duration</legend>
-                
+                <p><input type="radio" name="duration" id="durationA"><label for="durationA">Forever</label></p>
+                <p><input type="radio" name="duration" id="durationB" ><label for="durationB">Only take <input type="number" > questions</label></p>
+                <p><input type="radio" name="duration" id="durationC"><label for="durationC">Untill all questions are asked</label></p>
             </fieldset>
-            <h1>Press start</h1>
-            <button>OK</button>
+            <fieldset>
+                <legend>Time</legend>
+                <p>No maximal time for a question</p>
+            </fieldset>
+            <div class="menubarmenu"><button class="menubarmenubutton" onclick="inittest()">Go</button></div>
         </div>
         <div style="display: none" id="mainscreen3">
             <h1 id="vraagstelling"></h1>
@@ -420,6 +425,10 @@
             
             function decodeRawDoc(){
                 extractDocInfo();
+                switchTo(mainscreen2);
+            }
+            
+            function inittest(){
                 switchTo(mainscreen3);
                 intestmenu.style.display = "block";
                 next();

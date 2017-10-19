@@ -1,0 +1,11 @@
+<html>
+<head>
+<title>Home - Sanderslando</title>
+</head>
+<body>
+<h1>Welcome to Sanderslando</h1>
+<button onclick="window.open('/cv/portfolio.html','_SELF');">Curriculum Vitae</button>
+<button onclick="window.open('/weboverhoorder/main.html','_SELF');">Overhoorder</button>
+<button onclick="window.open('/orthodoxcalendar/main.html','_SELF');">Calendar</button>
+</body>
+</html>

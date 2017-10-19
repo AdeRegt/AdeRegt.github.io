@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>CV - Alexandros de Regt</title>
+        <title>Portfolio - Alexandros de Regt</title>
         <style>
             body{
                 position: absolute;
@@ -11,7 +11,7 @@
             }
             
             html{
-                background: radial-gradient(red, yellow, green);
+                background: radial-gradient(gainsboro, gray, green);
             }
         </style>
     </head>
@@ -62,6 +62,8 @@
                 div.style.border = "solid black 1px";
                 div.style.backgroundColor = "white";
                 div.style.boxShadow = "1px 1px 5px #888888";
+                div.style.resize = "both";
+                div.style.overflow = "auto";
                 var titlebar = document.createElement("div");
                 var draggable = document.createElement("div");
                 var tit = document.createElement("label");
@@ -71,7 +73,7 @@
                 draggable.style.position = "absolute";
                 draggable.style.cursor = "move";
                 draggable.classList.add("titlebars");
-                draggable.style.width = (w-30)+"px";
+                draggable.style.width = "100%";//(w-30)+"px";
                 draggable.style.height = "20px";
                 tit.style.position = "absolute";
                 tit.style.left = "20px";
@@ -79,7 +81,7 @@
                 div.appendChild(draggable);
                 draggable.appendChild(titlebar);
                 titlebar.style.height = "20px";
-                titlebar.style.width = w+"px";
+                titlebar.style.width = "100%";//w+"px";
                 tit.innerHTML = title;
                 var divmove = function(e){
                     div.style.top = e.clientY+'px';
@@ -111,11 +113,51 @@
                 var iframestuff = document.createElement("iframe");
                 iframestuff.style.position = "absolute";
                 iframestuff.style.top = "21px";
-                iframestuff.style.width = w+"px";
-                iframestuff.style.height = (h-21)+"px";
+                iframestuff.style.width = "99%";//(w-20)+"px";
+                iframestuff.style.height = "90%";//((h-21)-20)+"px";
                 iframestuff.style.border = "none";
                 iframestuff.src = content;
                 div.appendChild(iframestuff);
+                var leftslide = document.createElement("div");
+                leftslide.style.position = "absolute";
+//                leftslide.style.top = "21px";
+                leftslide.style.right = "0px";
+                leftslide.style.width = "2px";
+                leftslide.style.height = "100%";
+                leftslide.style.cursor = "w-resize";
+                leftslide.steep = function(e){
+                        div.style.width = ((((e.clientX) - div.offsetLeft))-10)+'px';
+                };
+                leftslide.stoop = function(e){
+                        div.removeEventListener('drag',leftslide.steep,false);
+                };
+                leftslide.draggable = true;
+                leftslide.addEventListener('dragstart',function(joke){
+                    div.addEventListener('drag',leftslide.steep,false);
+                    div.addEventListener('drop',leftslide.stoop,false);
+                    div.addEventListener('dragover',function(e){e.preventDefault();},false);
+                },false);
+                div.appendChild(leftslide);
+                var botslide = document.createElement("div");
+                botslide.style.position = "absolute";
+                botslide.style.bottom = "0px";
+                botslide.style.left = "0px";
+                botslide.style.width = "100%";
+                botslide.style.height = "2px";
+                botslide.style.cursor = "n-resize";
+                botslide.steep = function(e){
+                        div.style.height = ((((e.clientY) - div.offsetTop))-10)+'px';
+                };
+                botslide.stoop = function(e){
+                        div.removeEventListener('drag',botslide.steep,false);
+                };
+                botslide.draggable = true;
+                botslide.addEventListener('dragstart',function(joke){
+                    div.addEventListener('drag',botslide.steep,false);
+                    div.addEventListener('drop',botslide.stoop,false);
+                    div.addEventListener('dragover',function(e){e.preventDefault();},false);
+                },false);
+                div.appendChild(botslide);
             }
         </script>
     </body>
