@@ -4,6 +4,8 @@
         <title>Sanderslando Overhoorder</title>
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
         <style>
+            
+            
             .statusbar{
                 background-color: #333;
                 font-family: Arial;
@@ -158,8 +160,8 @@
         <p style="width: 100%;height: 50px">.</p>
         <div style="display: none" id="mainscreen0">
             <div id="fxtrigger" style="width: 100px"></div>
-            <div class="infomenubar">
-                <div class="menubarmenu" style="background-color: #333">
+            <div class="infomenubar" style="position: unset">
+                <div class="menubarmenu" style="background-color: #333; ">
                     <button class="menubarmenubutton"><label id="L16">Add</label></button>
                     <div class="menubarmenucontainer">
                         <div onclick="addQuestion('org.sanderslando.overhoorder.type.questions.singleanswer.SingleAnswerController','','')" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Gnome-bookmark-new.svg/20px-Gnome-bookmark-new.svg.png" width="20" height="20"> <label id="L17">Single answer</label></div>
@@ -193,6 +195,7 @@
             </table>
             <br/>
             <p><b>Debugging</b></p>
+            <p>Abdullah</p>
             <p>Juancarlos Garcia</p>
             <br/>
             <p><b>Images</b></p>
@@ -202,15 +205,15 @@
         <div style="display: none" id="mainscreen2">
             <fieldset>
                 <legend>Duration</legend>
-                <p><input type="radio" name="duration" id="durationA"><label for="durationA">Forever</label></p>
-                <p><input type="radio" name="duration" id="durationB" ><label for="durationB">Only take <input type="number" > questions</label></p>
+                <p><input type="radio" name="duration" id="durationA" checked=""><label for="durationA">Forever</label></p>
+                <p><input type="radio" name="duration" id="durationB" ><label for="durationB">Only take <input type="number" id="lefty" value="10"> questions</label></p>
                 <p><input type="radio" name="duration" id="durationC"><label for="durationC">Untill all questions are asked</label></p>
             </fieldset>
             <fieldset>
                 <legend>Time</legend>
                 <p>No maximal time for a question</p>
             </fieldset>
-            <div class="menubarmenu"><button class="menubarmenubutton" onclick="inittest()">Go</button></div>
+            <button onclick="inittest()">Go</button>
         </div>
         <div style="display: none" id="mainscreen3">
             <h1 id="vraagstelling"></h1>
