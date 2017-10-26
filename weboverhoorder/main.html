@@ -153,6 +153,7 @@
                 <div class="menubarmenucontainer">
                     <a class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Gnome-help-contents.svg/20px-Gnome-help-contents.svg.png"> <label id="L13">Help</label></a>
                     <a class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Utilities-system-monitor.svg/20px-Utilities-system-monitor.svg.png"> <label id="L14">Report an Issue</label></a>
+                    <div onclick="window.open('https://sites.google.com/site/sanderslando/software/overhoorder/OverhoorderInstaller.jar?attredirects=0&d=1');" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Gnome-document-save.svg/20px-Gnome-document-save.svg.png"> Download Overhoorder</div>
                     <div onclick="switchTo(mainscreen1);" class="menubarmenucontent"><img alt="x" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Tango-style_info_icon.svg/20px-Tango-style_info_icon.svg.png"> <label id="L15">About</label></div>
                 </div>
             </div>
@@ -206,14 +207,15 @@
             <fieldset>
                 <legend>Duration</legend>
                 <p><input type="radio" name="duration" id="durationA" checked=""><label for="durationA">Forever</label></p>
-                <p><input type="radio" name="duration" id="durationB" ><label for="durationB">Only take <input type="number" id="lefty" value="10"> questions</label></p>
-                <p><input type="radio" name="duration" id="durationC"><label for="durationC">Untill all questions are asked</label></p>
+                <p><input type="radio" name="duration" id="durationB" ><label for="durationB">Only take questions</label><input type="number" id="lefty" value="10"> </p>
+                
             </fieldset>
-            <fieldset>
-                <legend>Time</legend>
-                <p>No maximal time for a question</p>
-            </fieldset>
-            <button onclick="inittest()">Go</button>
+            
+            <div class="infomenubar" style="position: unset">
+                <div class="menubarmenu" style="background-color: #333; ">
+                    <button class="menubarmenubutton" onclick="inittest()">Start test</button>
+                </div>
+            </div>
         </div>
         <div style="display: none" id="mainscreen3">
             <h1 id="vraagstelling"></h1>
@@ -451,6 +453,12 @@
                     scorebord.style.color = "red";
                 }
                 scorebord.innerHTML = score;
+                if(durationB.checked){
+                    lefty.value = lefty.value - 1;
+                    if(lefty.value==0){
+                        window.alert("HALT");
+                    }
+                }
                 next();
             }
             
