@@ -1,0 +1,20 @@
+<html>
+	<head>
+		<title>MikeBASIC Interpeter by Sanderslando</title>
+	</head>
+	<body style="background-color:black;color:white">
+		<p>Select your MikeBASIC file <input type="file" id="mainfilesel" accept=".bas"><button onclick="if(poputables.style.display=='inline'){poputables.style.display='none';}else{poputables.style.display='inline';}">Registers</button></p>
+		<noscript><h1>This program needs JavaScript to run</h1></noscript>
+		<canvas id="krnld" width="640" height="480" style="border:1px solid #c3c3c3;">
+			Your browser does not support the canvas element.
+		</canvas>
+		<br/>
+		<table id="poputables" border="1" style="display:none"></table>
+		<script src="engine.js"></script>
+		<script>
+			registerFileListeners('mainfilesel');
+			registerCanvasListeners('krnld');
+			init();
+		</script>
+	</body>
+</html>
