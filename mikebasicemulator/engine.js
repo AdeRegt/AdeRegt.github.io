@@ -17,6 +17,7 @@ var canvastrigger;
 
 var numbervars = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 var stringvars = ["","","","","","","","",""];
+var callstack = [0];
 
 var functionslist = [
 	["ALERT",alert]
@@ -87,6 +88,9 @@ function putc(ch){
 	if(ch=='\n'){
 		curY++;
 		curX = 0;
+		if(curY==25){
+			cls();
+		}
 	}else{
 		ctx.font = "12px bold Consolas";
 		ctx.fillStyle = "white";
@@ -100,13 +104,31 @@ function putc(ch){
 }
 
 function cls(){
+	curX = 0;
+	curY = 1;
 	ctx.fillStyle = "#000000";
 	ctx.fillRect(0,0,scrnW,scrnH);
 }
 
-function syntaxisError(reason){
+function halt(){
 	window.clearInterval(intervalcontainer);
-	window.alert("Syntaxis error at line "+regelnummer+"!\n"+(hettotalebestand.split("\n")[regelnummer-1])+"\n"+reason+"\n\nSystem halted");
+	cls();
+	printf(" >>> BASIC PROGRAM FINISHED <<< ");
+}
+
+function syntaxisError(reason){
+	halt();
+	var y = 1;
+	var z = 0;
+	while(z < instructionpointer){
+		if(hettotalebestand[z]=='\n'){
+			y++;
+		}
+		z++;
+	}
+	var message = "Syntaxis error at line "+y+"!\n"+(hettotalebestand.split("\n")[y-1])+"\n"+reason+"\n\nSystem halted";
+	window.alert(message);
+	console.warn(message);
 }
 
 function nextWord(istext){
@@ -160,6 +182,10 @@ function getCodeFromA(stringvar){
 	return Number((stringvar[0].toUpperCase()).charCodeAt(0))-Number("A".charCodeAt(0));
 }
 
+function isStringvar(stringvar){
+	return stringvar[0]=='$'; 
+}
+
 function getNumberVariabele(stringvar){
 	if ('0123456789'.indexOf(stringvar[0]) !== -1) {
 		return Number(stringvar);
@@ -177,6 +203,7 @@ var reqinp = false;
 var bfrt;
 var targz = "";
 var lstp;
+var waitkey = false;
 
 function registerkeypress(e){
 	var t = e.keyCode? e.keyCode : e.charCode;
@@ -199,6 +226,14 @@ function tick(){
 				setStringVariabele(bfrt,targz);
 			}
 			lstp = null;
+		}
+		return;
+	}
+	if(waitkey){
+		if(lstp!=null){
+			setNumberVariabele(bfrt,lstp);
+			lstp = null;
+			waitkey = false;
 		}
 		return;
 	}
@@ -262,6 +297,44 @@ function registerCanvasListeners(idname){
 	canvastrigger.focus();
 }
 
+var nextand = false;
+function handleBoolean(){
+	var word1 = nextWord(false);
+	var word2 = nextWord(false);
+	var word3 = nextWord(false);
+	var word4 = nextWord(false).toUpperCase();
+	if(word4=="AND"){
+		nextand = true;
+	}else if(word4=="THEN"){
+		nextand = false;
+	}else{
+		nextand = false;
+		syntaxisError("Expected: AND or THEN");
+	}
+	if(word2=="="){
+		if(isStringvar(word1)){
+			return getStringVariabele(word1)==getStringVariabele(word3);
+		}else{
+			return getNumberVariabele(word1)==getNumberVariabele(word3);
+		}
+	}else if(word2=="<"){
+		if(isStringvar(word1)){
+			syntaxisError("< operator only for numbercomparing");
+		}else{
+			return getNumberVariabele(word1)<getNumberVariabele(word3);
+		}
+	}else if(word2==">"){
+		if(isStringvar(word1)){
+			syntaxisError("> operator only for numbercomparing");
+		}else{
+			return getNumberVariabele(word1)>getNumberVariabele(word3);
+		}
+	}else{
+		syntaxisError("Expected EXPR1 = EXPR2 or EXPR1 < EXPR2 or EXPR1 > EXPR2");
+	}
+	return false;
+}
+
 
 function init(){
 	document.body.addEventListener('keypress',registerkeypress,true);
@@ -271,9 +344,9 @@ function init(){
 	insertFunction("ALERT",function(e){
 		window.alert(getStringVariabele(nextWord(false)));
 	});
-	insertFunction("ASKFILE",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("BREAK",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("CALL",function(e){syntaxisError("Momenteel niet ondersteund");});
+	insertFunction("ASKFILE",function(e){syntaxisError("Not supported yet");});
+	insertFunction("BREAK",function(e){syntaxisError("Not supported yet");});
+	insertFunction("CALL",function(e){syntaxisError("Not supported yet");});
 	insertFunction("CASE",function(e){
 		var type = nextWord(false);
 	    	var name = nextWord(false);
@@ -288,62 +361,94 @@ function init(){
 	    	// clears the screen
 	    	cls();
 	});
-	insertFunction("CURSOR",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("CURSCHAR",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("CURSCOL",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("CURSPOS",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("DELETE",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("DO",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("END",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("FILES",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("FOR",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("GETKEY",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("GOSUB",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("GOTO",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("IF",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("INCLUDE",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("CALL",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("INK",function(e){syntaxisError("Momenteel niet ondersteund");});
+	insertFunction("CURSOR",function(e){syntaxisError("Not supported yet");});
+	insertFunction("CURSCHAR",function(e){syntaxisError("Not supported yet");});
+	insertFunction("CURSCOL",function(e){syntaxisError("Not supported yet");});
+	insertFunction("CURSPOS",function(e){syntaxisError("Not supported yet");});
+	insertFunction("DELETE",function(e){syntaxisError("Not supported yet");});
+	insertFunction("DO",function(e){syntaxisError("Not supported yet");});
+	insertFunction("END",function(e){
+		halt();
+	});
+	insertFunction("FILES",function(e){syntaxisError("Not supported yet");});
+	insertFunction("FOR",function(e){syntaxisError("Not supported yet");});
+	insertFunction("GETKEY",function(e){syntaxisError("Not supported yet");});
+	insertFunction("GOSUB",function(e){
+		var location = nextWord(false);
+		console.info("Calling label "+location);
+		callstack.push(instructionpointer);
+		instructionpointer = hettotalebestand.indexOf(location+":");
+	});
+	insertFunction("GOTO",function(e){
+		var location = nextWord(false);
+		console.info("Jumping to label "+location);
+		instructionpointer = hettotalebestand.indexOf(location+":");
+	});
+	insertFunction("IF",function(e){
+		var bools = true;
+		nextand = true;
+		while(nextand){
+			var res = handleBoolean();
+			if(!res){
+				bools = false;
+			}
+		}
+		if(bools){
+			tick();
+		}else{
+			skipToEndOfLine();
+		}
+	});
+	insertFunction("INCLUDE",function(e){syntaxisError("Not supported yet");});
+	insertFunction("CALL",function(e){syntaxisError("Not supported yet");});
+	insertFunction("INK",function(e){syntaxisError("Not supported yet");});
 	insertFunction("INPUT",function(e){
 		// INPUT var
 	    	reqinp = true;
 	    	bfrt = nextWord(false);
+	    	targz = "";
 	});
-	insertFunction("LEN",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("LISTBOX",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("LOAD",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("MOVE",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("NEXT",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("NUMBER",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("PAGE",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("PAUSE",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("PEEK",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("POKE",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("PORT",function(e){syntaxisError("Momenteel niet ondersteund");});
+	insertFunction("LEN",function(e){syntaxisError("Not supported yet");});
+	insertFunction("LISTBOX",function(e){syntaxisError("Not supported yet");});
+	insertFunction("LOAD",function(e){syntaxisError("Not supported yet");});
+	insertFunction("MOVE",function(e){syntaxisError("Not supported yet");});
+	insertFunction("NEXT",function(e){syntaxisError("Not supported yet");});
+	insertFunction("NUMBER",function(e){syntaxisError("Not supported yet");});
+	insertFunction("PAGE",function(e){syntaxisError("Not supported yet");});
+	insertFunction("PAUSE",function(e){syntaxisError("Not supported yet");});
+	insertFunction("PEEK",function(e){syntaxisError("Not supported yet");});
+	insertFunction("POKE",function(e){syntaxisError("Not supported yet");});
+	insertFunction("PORT",function(e){syntaxisError("Not supported yet");});
 	insertFunction("PRINT",function(e){
 	    	// systeem print een string PRINT string ;
 	    	// systeem print een string PRINT string
 	    	var x = nextWord(false);
-	    	if(x[0]=='$'){
-	    		
-	    	}else{
-	    		printf(x);
-	    	}
+	    	printf(getStringVariabele(x));
 	    	if(nextWord(false)!=";"){
 	    		printf("\n");
 	    	}
 	});
-	insertFunction("RAND",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("READ",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("RENAME",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("RETURN",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("SAVE",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("SERIAL",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("SIZE",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("SOUND",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("STRING",function(e){syntaxisError("Momenteel niet ondersteund");});
-	insertFunction("WAITKEY",function(e){syntaxisError("Momenteel niet ondersteund");});
+	insertFunction("RAND",function(e){
+		var writeto = nextWord(false);
+		var minimal = nextWord(false);
+		var maximal = nextWord(false);
+		setNumberVariabele(writeto,Math.floor(Math.random() * getNumberVariabele(maximal)) + getNumberVariabele(minimal)) ;
+	});
+	insertFunction("READ",function(e){syntaxisError("Not supported yet");});
+	insertFunction("RENAME",function(e){syntaxisError("Not supported yet");});
+	insertFunction("RETURN",function(e){
+		instructionpointer = callstack.pop();
+	});
+	insertFunction("SAVE",function(e){syntaxisError("Not supported yet");});
+	insertFunction("SERIAL",function(e){syntaxisError("Not supported yet");});
+	insertFunction("SIZE",function(e){syntaxisError("Not supported yet");});
+	insertFunction("SOUND",function(e){syntaxisError("Not supported yet");});
+	insertFunction("STRING",function(e){syntaxisError("Not supported yet");});
+	insertFunction("WAITKEY",function(e){
+		waitkey = true;
+		bfrt = nextWord(false);
+	});
 	cls();
-	
+	printf(" >> press OPEN to open a MikeBASIC file on your computer << ");
 }
 

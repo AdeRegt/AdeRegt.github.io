@@ -2,8 +2,16 @@
 	<head>
 		<title>MikeBASIC Interpeter by Sanderslando</title>
 	</head>
-	<body style="background-color:black;color:white">
-		<p>Select your MikeBASIC file <input type="file" id="mainfilesel" accept=".bas"><button onclick="if(poputables.style.display=='inline'){poputables.style.display='none';}else{poputables.style.display='inline';}">Registers</button></p>
+	<body style="background-color:black;color:white; text-align:center">
+		<div style="background: linear-gradient(grey,black); height: 100px">
+			<p>
+				<button onclick="mainfilesel.click()"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Gnome-document-open.svg/48px-Gnome-document-open.svg.png"><br/>Open</button>
+				<input type="file" id="mainfilesel" accept=".bas" style="display: none">
+				<button onclick="if(poputables.style.display=='inline'){poputables.style.display='none';}else{poputables.style.display='inline';}"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Gnome-system-run.svg/48px-Gnome-system-run.svg.png"><br/>Registers</button>
+				<button><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Dialog-stop-hand.svg/48px-Dialog-stop-hand.svg.png"><br/>Halt</button>
+				<button><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Go-jump.svg/48px-Go-jump.svg.png"><br/>Next</button>
+			</p>
+		</div>
 		<noscript><h1>This program needs JavaScript to run</h1></noscript>
 		<canvas id="krnld" width="640" height="480" style="border:1px solid #c3c3c3;">
 			Your browser does not support the canvas element.
