@@ -1,0 +1,312 @@
+<html>
+	<head>
+		<title>CV - Alexandros de Regt</title>
+		<style>
+		
+		body{
+			position: absolute;
+			background-color: #008080;
+		}
+		
+		.window{
+			border: solid black 1px;
+			border-radius: 5px;
+			overflow: hidden;
+			position: absolute;
+		}
+		
+		.titlebar{
+			top: 0px;
+			left: 0px;
+			height: 30px;
+			background: linear-gradient(to right, skyblue, blue, darkblue);
+			color: white;
+			cursor: move;
+			vertical-align: middle;
+			padding: 2px;
+		}
+		
+		.contents{
+			background-color: grey;
+			width: 100%;
+			height: 100%;
+		}
+		
+		.killbutton{
+			border: solid black 1px;
+			border-radius: 10px;
+			background: radial-gradient(red,darkred);
+			width: 20px;
+			height: 20px;
+			top: 5px;
+			left: 5px;
+			margin: 5px;
+		}
+		
+		.killbutton:hover{
+			background: radial-gradient(darkred,red);
+		}
+		
+		.blockbutton{
+			width: 100px;
+		}
+		
+		.tab {
+		    overflow: hidden;
+		    border: 1px solid #ccc;
+		    background-color: #f1f1f1;
+		}
+		
+		.tablinks {
+		    background-color: inherit;
+		    float: left;
+		    border: none;
+		    outline: none;
+		    cursor: pointer;
+		    padding: 14px 16px;
+		    transition: 0.3s;
+		}
+		
+		.tablinks:hover {
+		    background-color: #ddd;
+		}
+		
+		.tablinks:active{
+			background-color: red;
+		}
+		
+		.tabcontent {
+		    display: none;
+		    padding: 6px 12px;
+		    border: 1px solid #ccc;
+		    border-top: none;
+		}
+		
+		
+		
+		</style>
+	</head>
+	<body>
+		<div class='window' id='mydiv5' style='width: 210px;height: 200px;display:none'></div>
+		<div class='window' id='mydiv4' style='width: 210px;height: 200px;display:none'></div>
+		
+		
+		
+		<div class='window' id='mydiv3' style='width: 430px;height: 500px;display:none'>
+			<div class='titlebar' id='mydiv3header'>
+				<button class='killbutton' onclick="mydiv3.style.display='none';" title="Sluiten"></button>
+				<b> Educatie</b>
+			</div>
+			<div class='contents'>
+				<div class="tab">
+					<button class="tablinks" onclick="openCity(event, 'Taal')">
+						<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Pidgin.svg/48px-Pidgin.svg.png">
+						<br/>
+						Taal
+					</button>
+					<button class="tablinks" onclick="openCity(event, 'Primair')">
+						<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Kword.svg/48px-Kword.svg.png">
+						<br/>
+						Primair
+					</button>
+					<button class="tablinks" onclick="openCity(event, 'Laboratorium')">
+						<img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Gamgi48.png">
+						<br/>
+						Laboratorium
+					</button>
+					<button class="tablinks" onclick="openCity(event, 'Overig')">
+						<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Applications-accessories.svg/48px-Applications-accessories.svg.png">
+						<br/>
+						Overig</button>
+				</div>
+				<div id="Taal" class="tabcontent">
+				<b>Menselijke talen</b>
+				  <table>
+				  	<tr style="background: linear-gradient(to right, skyblue, blue, darkblue)">
+				  		<td>Vlag</td>
+				  		<td>Lezen</td>
+				  		<td>Schrijven</td>
+				  		<td>Spreken</td>
+				  		<td>Luisteren</td>
+				  	</tr>
+				  	<tr>
+				  		<td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Flag_of_the_Netherlands.svg/50px-Flag_of_the_Netherlands.svg.png"></td>
+				  		<td>C2</td>
+				  		<td>C2</td>
+				  		<td>C2</td>
+				  		<td>C2</td>
+				  	</tr>
+				  	<tr>
+				  		<td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Flag_of_the_United_Kingdom.svg/50px-Flag_of_the_United_Kingdom.svg.png"></td>
+				  		<td>B2</td>
+				  		<td>B2</td>
+				  		<td>B2</td>
+				  		<td>B2</td>
+				  	</tr>
+				  	<tr>
+				  		<td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/50px-Flag_of_Germany.svg.png"></td>
+				  		<td>A1</td>
+				  		<td>A1</td>
+				  		<td>A1</td>
+				  		<td>A1</td>
+				  	</tr>
+				  	<tr>
+				  		<td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Greece.svg/50px-Flag_of_Greece.svg.png"></td>
+				  		<td>A1</td>
+				  		<td>A1</td>
+				  		<td>A1</td>
+				  		<td>A1</td>
+				  	</tr>
+				  	<tr>
+				  		<td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Flag_of_the_People%27s_Republic_of_China.svg/50px-Flag_of_the_People%27s_Republic_of_China.svg.png"></td>
+				  		<td>A1</td>
+				  		<td>A1</td>
+				  		<td>A1</td>
+				  		<td>A1</td>
+				  	</tr>
+				  </table>
+				  <br/>
+				  <b>Computertalen</b>
+				  <table>
+				  	<tr><td><img src="text-x-c.svg"></td><td><img src="text-x-csharp.svg"></td><td><img src="text-x-java-source.svg"></td><td><img src="multipart-encrypted.svg"></td><td><img src="libreoffice-oasis-web-template.png"></td><td><img src="text-css.svg"></td><td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Application-x-php.svg/48px-Application-x-php.svg.png"></td><td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Application-x-pcb.svg/48px-Application-x-pcb.svg.png"></td></tr>
+				  </table>
+				</div>
+				<div id="Primair" class="tabcontent">
+				  <table>
+				  	<tr><td><img src="lc.png"></td><td>Lauwerscollege Grijpskerk, Kaderberoepse leerweg</td></tr>
+				  </table>
+				</div>
+				<div id="Laboratorium" class="tabcontent">
+				  <table>
+				  	<tr><td><img src="np.jpg"></td><td>Noorderpoort, School voor laboratoriumtechnieken. Allround laborant niveau 3</td></tr>
+				  </table>
+				</div>
+				<div id="Overig" class="tabcontent">
+				  <table>
+				  	<tr>
+				  		<td></td>
+				  		<td></td>
+				  	</tr>
+				  </table>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		<div class='window' id='mydiv2' style='width: 210px;height: 200px;display:none'>
+			<div class='titlebar' id='mydiv2header'>
+				<button class='killbutton' onclick="mydiv2.style.display='none';" title="Sluiten"></button>
+				<b> Contact</b>
+			</div>
+			<div class='contents'>
+				<button onclick="window.location.href = 'https://www.facebook.com/alexandros.deregt';">
+					<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/F_icon.svg/48px-F_icon.svg.png'>
+					<br/>
+					Facebook
+				</button>
+				<button onclick="">
+					<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Gnome-mail-forward.svg/48px-Gnome-mail-forward.svg.png">
+					<br/>
+					Email
+				</button>
+			</div>
+		</div>
+		
+		
+		
+		
+		<div class='window' id='mydiv1' style='width: 210px;height: 200px'>
+			<div class='titlebar' id='mydiv1header'>
+				<button class='killbutton' onclick="mydiv1.style.display='none';" title="Sluiten"></button>
+				<b> Main Menu</b>
+			</div>
+			<div class='contents'>
+				<button class='blockbutton' onclick="mydiv2.style.display='block';">
+					<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Gnome-x-office-address-book.svg/48px-Gnome-x-office-address-book.svg.png'>
+					<br/>
+					Contact
+				</button>
+				<button class='blockbutton' onclick="mydiv3.style.display='block';">
+					<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Gnome-application-certificate.svg/48px-Gnome-application-certificate.svg.png'>
+					<br/>
+					Educatie
+				</button>
+				<button class='blockbutton' onclick="mydiv4.style.display='block';">
+					<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Gnome-x-office-presentation.svg/48px-Gnome-x-office-presentation.svg.png'>
+					<br/>
+					Werkervaring
+				</button>
+				<button class='blockbutton' onclick="mydiv5.style.display='block';">
+					<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Gnome-application-x-executable.svg/48px-Gnome-application-x-executable.svg.png'>
+					<br/>
+					Projecten
+				</button>
+			</div>
+		</div>
+		<script>
+dragElement(document.getElementById(("mydiv1")));
+dragElement(document.getElementById(("mydiv2")));
+dragElement(document.getElementById(("mydiv3")));
+dragElement(document.getElementById(("mydiv4")));
+dragElement(document.getElementById(("mydiv5")));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    /* if present, the header is where you move the DIV from:*/
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  } else {
+    /* otherwise, move the DIV from anywhere inside the DIV:*/
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    /* stop moving when mouse button is released:*/
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    if(evt!=null){
+    	evt.currentTarget.className += " active";
+    }
+}
+
+openCity(null,'Taal');
+		</script>
+	</body>
+</html>
