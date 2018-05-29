@@ -87,14 +87,96 @@
 		</style>
 	</head>
 	<body>
-		<div class='window' id='mydiv5' style='width: 210px;height: 200px;display:none'></div>
-		<div class='window' id='mydiv4' style='width: 210px;height: 200px;display:none'></div>
+		<div class='window' id='mydiv5' style='width: 210px;height: 200px;display:none'>
+		
+		</div>
+
+		<div class='window' id='mydiv4' style='width: 500px;height: 500px;display:none'>
+			<div class='titlebar' id='mydiv3header'>
+				<button class='killbutton' onclick="mydiv4.style.display='none';mydiv1.style.display='block';" title="Sluiten"></button>
+				<b> Werkervaring</b>
+			</div>
+			<div class='contents'>
+				<div class="tab">
+					<button class="tablinks" onclick="openCity(event, 'WerkLab')">
+						<img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Gamgi48.png">
+						<br/>
+						Laboratorium
+					</button>
+					<button class="tablinks" onclick="openCity(event, 'WerkICT')">
+						<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Gnome-utilities-terminal.svg/48px-Gnome-utilities-terminal.svg.png">
+						<br/>
+						Automatisering
+					</button>
+					<button class="tablinks" onclick="openCity(event, 'WerkRND')">
+						<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/System-users.svg/48px-System-users.svg.png">
+						<br/>
+						Overig
+					</button>
+				</div>
+				<div id="WerkLab" class="tabcontent">
+					<table>
+						<tr>
+							<td><img src="https://media.licdn.com/dms/image/C4E0BAQFHMZhX-ODH5g/company-logo_200_200/0?e=2159024400&v=beta&t=rUhvxUrPB2rYzuG4K_BwnVQRU65rnEUe4gwXyg1-1nQ" width="50" height="50" ></td>
+							<td><b>Smurfit Kappa Solidboard Hoogkerk</b><br/>Klaarmeester, stage, halfjaar</td>
+						</tr>
+						<tr>
+							<td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Text-questionmark.svg/50px-Text-questionmark.svg.png" width="50" height="50" ></td>
+							<td><b>Process Groningen</b><br/>Analist, stage, maand</td>
+						</tr>
+						<tr>
+							<td><img src="http://www.lpffp.nl/wp-content/uploads/2014/01/copy-logo.png" width="50" height="50" ></td>
+							<td><b>LPFFP Grootegast</b><br/>Verpakkingsresearch, stage, halfjaar</td>
+						</tr>
+						<tr>
+							<td><img src="https://yt3.ggpht.com/a-/ACSszfGyuqbtJy42aotwofUbnUZSQaaybApsUIdNPg=s900-mo-c-c0xffffffff-rj-k-no" width="50" height="50" ></td>
+							<td><b>Friesland Campina</b><br/>Chromatograafmedewerker, maand</td>
+						</tr>
+						<tr>
+							<td><img src="https://media.licdn.com/dms/image/C4D0BAQGwZhMz9JaUBA/company-logo_200_200/0?e=2159024400&v=beta&t=yVRXX_oFV9d6XrDfsuwAgmDCsRFwI-VzjCxeRKBBNJM" width="50" height="50" ></td>
+							<td><b>Citeq biologics</b><br/>Extractiemedewerker, 5 maanden</td>
+						</tr>
+						<tr>
+							<td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Text-questionmark.svg/50px-Text-questionmark.svg.png" width="50" height="50" ></td>
+							<td><b>Process Groningen</b><br/>Voeder en analist, 1 jaar</td>
+						</tr>
+					</table>
+				</div>
+				<div id="WerkICT" class="tabcontent">
+					<table>
+						<tr>
+							<td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Business-commerce.svg/50px-Business-commerce.svg.png"></td>
+							<td>
+								<b>Sport, Health & Wellness center Imperial</b><br/>
+								Java-programmeur<br/>
+								Systeembeheerder: linux & windows<br/>
+								<br/>
+								Baliemedewerker<br/>
+								Begeleiding stagiairs<br/>
+								Administratie<br/>
+								<br/>
+								3 jaar en actueel
+							</td>
+						</tr>
+						<tr>
+							<td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/System-software-update.svg/48px-System-software-update.svg.png"></td>
+							<td><b>ACCW</b><br/>Beheer website</td>
+						</tr>
+						<tr>
+							<td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Gnome-logviewer.svg/48px-Gnome-logviewer.svg.png"></td>
+							<td><b>Op de bult</b><br/>Technische ondersteuning</td>
+						</tr>
+					</table>
+				</div>
+				<div id="WerkRND" class="tabcontent"></div>
+			</div>
+		</div>
 		
 		
 		
 		<div class='window' id='mydiv3' style='width: 430px;height: 500px;display:none'>
 			<div class='titlebar' id='mydiv3header'>
-				<button class='killbutton' onclick="mydiv3.style.display='none';" title="Sluiten"></button>
+				<button class='killbutton' onclick="mydiv3.style.display='none';mydiv1.style.display='block';" title="Sluiten"></button>
 				<b> Educatie</b>
 			</div>
 			<div class='contents'>
@@ -184,8 +266,16 @@
 				<div id="Overig" class="tabcontent">
 				  <table>
 				  	<tr>
+				  		<td><img src="https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/0004/1799/brand.gif?itok=2kHrE9ps" width="50" height="50"></td>
+				  		<td>Autorijbewijs B</td>
+				  	</tr>
+				  	<tr>
+				  		<td><img src="https://www.hklimburg.nl/upload/tmb/logo_gildelogo_nieuw_2008_zonder_tekst_200x201.jpg" width="50" height="50"></td>
+				  		<td>Vrijwillig molenaar (Niet afgerond)</td>
+				  	</tr>
+				  	<tr>
 				  		<td></td>
-				  		<td></td>
+				  		<td>Cursus bruiningsversnellers via Imperial</td>
 				  	</tr>
 				  </table>
 				</div>
@@ -196,7 +286,7 @@
 		
 		<div class='window' id='mydiv2' style='width: 210px;height: 200px;display:none'>
 			<div class='titlebar' id='mydiv2header'>
-				<button class='killbutton' onclick="mydiv2.style.display='none';" title="Sluiten"></button>
+				<button class='killbutton' onclick="mydiv2.style.display='none';mydiv1.style.display='block';" title="Sluiten"></button>
 				<b> Contact</b>
 			</div>
 			<div class='contents'>
@@ -218,26 +308,26 @@
 		
 		<div class='window' id='mydiv1' style='width: 210px;height: 200px'>
 			<div class='titlebar' id='mydiv1header'>
-				<button class='killbutton' onclick="mydiv1.style.display='none';" title="Sluiten"></button>
+				<button class='killbutton' onclick="mydiv1.style.display='none';mydiv1.style.display='block';" title="Sluiten"></button>
 				<b> Main Menu</b>
 			</div>
 			<div class='contents'>
-				<button class='blockbutton' onclick="mydiv2.style.display='block';">
+				<button class='blockbutton' onclick="mydiv1.style.display='none';mydiv2.style.display='block';">
 					<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Gnome-x-office-address-book.svg/48px-Gnome-x-office-address-book.svg.png'>
 					<br/>
 					Contact
 				</button>
-				<button class='blockbutton' onclick="mydiv3.style.display='block';">
+				<button class='blockbutton' onclick="mydiv1.style.display='none';mydiv3.style.display='block';">
 					<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Gnome-application-certificate.svg/48px-Gnome-application-certificate.svg.png'>
 					<br/>
 					Educatie
 				</button>
-				<button class='blockbutton' onclick="mydiv4.style.display='block';">
+				<button class='blockbutton' onclick="mydiv1.style.display='none';mydiv4.style.display='block';">
 					<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Gnome-x-office-presentation.svg/48px-Gnome-x-office-presentation.svg.png'>
 					<br/>
 					Werkervaring
 				</button>
-				<button class='blockbutton' onclick="mydiv5.style.display='block';">
+				<button class='blockbutton' onclick="mydiv1.style.display='none';mydiv5.style.display='block';">
 					<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Gnome-application-x-executable.svg/48px-Gnome-application-x-executable.svg.png'>
 					<br/>
 					Projecten
@@ -307,6 +397,7 @@ function openCity(evt, cityName) {
 }
 
 openCity(null,'Taal');
+openCity(null,'WerkLab');
 		</script>
 	</body>
 </html>
