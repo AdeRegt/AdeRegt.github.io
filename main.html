@@ -87,12 +87,47 @@
 		</style>
 	</head>
 	<body>
-		<div class='window' id='mydiv5' style='width: 210px;height: 200px;display:none'>
-		
+		<div class='window' id='mydiv5' style='width: 500px;height: 500px;display:none'>
+			<div class='titlebar' id='mydiv5header'>
+				<button class='killbutton' onclick="mydiv5.style.display='none';mydiv1.style.display='block';" title="Sluiten"></button>
+				<b> Projecten</b>
+			</div>
+			<div class='contents'>
+				<table>
+					<tr>
+						<td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Glade_2_logo.svg/48px-Glade_2_logo.svg.png"></td>
+						<td>
+							<b>Sanderslando Overhoorder</b><br/>
+							Programma ter bevordering van het leren van woorden,locaties enzovoorts<br/>
+							Mijn eerste serieuze project.<br/>
+							Jaarlijks breng ik meerdere keren updates uit<br/>
+							<p><a href="https://sites.google.com/site/sanderslando/software/overhoorder/FastInstaller.zip?attredirects=0&d=1">Java (volledig stabiel)</a> | <a href="https://aderegt.github.io/weboverhoorder/main.html">HTML (alpha)</a> | ISO (Gepland)</p>
+						</td>
+					</tr>
+					<tr>
+						<td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Gnome-system-software-installer.svg/48px-Gnome-system-software-installer.svg.png"></td>
+						<td>
+							<b>Sanderslando Operatingsystem</b><br/>
+							Een 32bit besturingssysteem met keyboard,atapi en module support<br/>
+							Programmas worden geladen met dynamic linking<br/>
+							<p><a href="https://github.com/AdeRegt/SanderOS/blob/master/myos.iso?raw=true">Legacy CDROM (Alpha)</a> | <a href="https://github.com/AdeRegt/SanderOS/tree/master/">Bron</a></p>
+						</td>
+					</tr>
+					<tr>
+						<td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Gnome-appointment-new.svg/48px-Gnome-appointment-new.svg.png"></td>
+						<td>
+							<b>Geplande projecten</b><br/>
+							Captive portal manager<br/>
+							Meeting manager<br/>
+							Java Virtual Machine in JavaScript<br/>
+						</td>
+					</tr>
+				</table>
+			</div>
 		</div>
 
 		<div class='window' id='mydiv4' style='width: 500px;height: 500px;display:none'>
-			<div class='titlebar' id='mydiv3header'>
+			<div class='titlebar' id='mydiv4header'>
 				<button class='killbutton' onclick="mydiv4.style.display='none';mydiv1.style.display='block';" title="Sluiten"></button>
 				<b> Werkervaring</b>
 			</div>
@@ -168,7 +203,14 @@
 						</tr>
 					</table>
 				</div>
-				<div id="WerkRND" class="tabcontent"></div>
+				<div id="WerkRND" class="tabcontent">
+					<table>
+						<tr>
+							<td></td>
+							<td><b>De vier winden - het Gronings landschap</b><br/>Toeristen rondleiden</td>
+						</tr>
+					</table>
+				</div>
 			</div>
 		</div>
 		
@@ -274,7 +316,7 @@
 				  		<td>Vrijwillig molenaar (Niet afgerond)</td>
 				  	</tr>
 				  	<tr>
-				  		<td></td>
+				  		<td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Weather-clear.svg/50px-Weather-clear.svg.png"></td>
 				  		<td>Cursus bruiningsversnellers via Imperial</td>
 				  	</tr>
 				  </table>
@@ -312,7 +354,7 @@
 				<b> Main Menu</b>
 			</div>
 			<div class='contents'>
-				<button class='blockbutton' onclick="mydiv1.style.display='none';mydiv2.style.display='block';">
+				<button disabled class='blockbutton' onclick="mydiv1.style.display='none';mydiv2.style.display='block';">
 					<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Gnome-x-office-address-book.svg/48px-Gnome-x-office-address-book.svg.png'>
 					<br/>
 					Contact
