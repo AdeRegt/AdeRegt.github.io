@@ -56,10 +56,12 @@
     				sendChannel.onclose = handleSendChannelStatusChange;
 					sendChannel.onmessage = getMessage;
 
+					var bool = false;
 					localConnection.onicecandidate = function(e){
-						if(e.candidate==null){
+						if(e.candidate==null||bool){
 							return;
 						}
+						bool = true;
 						prompt("ICE",JSON.stringify(e.candidate));
 						localConnection.addIceCandidate(JSON.parse(prompt("ICE2")));
 					};
@@ -70,16 +72,19 @@
 						prompt("OFFER",JSON.stringify(localConnection.localDescription));
 						return localConnection.setRemoteDescription(JSON.parse(prompt()));
 					}).catch(function(ex){
+						window.alert(JSON.stringify(ex));
 						console.log(ex);
 					});
 				}else if(reden=="other"){
 					remoteConnection = new RTCPeerConnection({iceServers:[{urls:"stun:stun.l.google.com:19302"}]});
 					remoteConnection.ondatachannel = receiveChannelCallback;
 
+					var bool = false;
 					remoteConnection.onicecandidate = function(e){
-						if(e.candidate==null){
+						if(e.candidate==null||bool){
 							return;
 						}
+						bool = true;
 						prompt("ICE",JSON.stringify(e.candidate));
 					};
 
@@ -92,6 +97,7 @@
 					}).then(function(){
 						return remoteConnection.addIceCandidate(JSON.parse(prompt("ICE2")));
 					}).catch(function(ex){
+						window.alert(JSON.stringify(ex));
 						console.log(ex);
 					});
 				}
