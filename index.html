@@ -1,11 +1,101 @@
 <html>
-<head>
-<title>Home - Sanderslando</title>
-</head>
-<body>
-<h1>Welcome to Sanderslando</h1>
-<button onclick="window.open('cv/portfolio.html','_SELF');">Curriculum Vitae</button>
-<button onclick="window.open('weboverhoorder/main.html','_SELF');">Overhoorder</button>
-<button onclick="window.open('orthodoxcalendar/main.html','_SELF');">Calendar</button>
-</body>
+	<head>
+		<title>Home - Sanderslando</title>
+	</head>
+	<body>
+		<h1>Sanderslando webRTC Chat window</h1>
+		<button onclick="startConnection('me')">I want to host a chat</button>
+		<button onclick="startConnection('other')">I want to join a chat</button>
+		<br/>
+		<br/>
+		<textarea disabled id="messagecenter"></textarea>
+		<br/>
+		<input type="text" id="sendmessagebox"><button onclick="sendMessage()">Send</button>
+		<script>
+
+			var sendChannel;
+
+			function sendMessage(){
+				var dinges = document.getElementById("sendmessagebox");
+				sendChannel.send(dinges.value);
+				var mc = document.getElementById("messagecenter");
+				mc.value = mc.value + dinges.value+  "\n";
+				dinges.value = "";
+				dinges.focus();
+			}
+
+			function getMessage(e){
+				console.log(e);
+				console.log("getMessage");
+				var mc = document.getElementById("messagecenter");
+				mc.value = mc.value + e.data +  "\n";
+			}
+
+			function handleSendChannelStatusChange(e){
+				console.log(e);
+				console.log("handleSendChannelStatusChange");
+			}
+
+			function receiveChannelCallback(e){
+				console.log(e);
+				sendChannel = e.channel;
+				sendChannel.onmessage = getMessage;
+				console.log("receiveChannelCallback");
+			}
+
+			function startConnection(reden){
+				if(!(reden=="me"||reden=="other")){
+					alert("Invalid answer: " + reden);
+					return;
+				}
+
+				if(reden=="me"){
+					var localConnection = new RTCPeerConnection();
+					sendChannel = localConnection.createDataChannel("sendChannel");
+					sendChannel.onopen = handleSendChannelStatusChange;
+    				sendChannel.onclose = handleSendChannelStatusChange;
+					sendChannel.onmessage = getMessage;
+
+					localConnection.onicecandidate = function(e){
+						if(e.candidate==null){
+							return;
+						}
+						prompt("ICE",JSON.stringify(e.candidate));
+						localConnection.addIceCandidate(JSON.parse(prompt("ICE2")));
+					};
+
+					localConnection.createOffer().then(function(localOffer){
+						return localConnection.setLocalDescription(localOffer);
+					}).then(function(){
+						prompt("OFFER",JSON.stringify(localConnection.localDescription));
+						return localConnection.setRemoteDescription(JSON.parse(prompt()));
+					}).catch(function(ex){
+						console.log(ex);
+					});
+				}else if(reden=="other"){
+					remoteConnection = new RTCPeerConnection();
+					remoteConnection.ondatachannel = receiveChannelCallback;
+
+					remoteConnection.onicecandidate = function(e){
+						if(e.candidate==null){
+							return;
+						}
+						prompt("ICE",JSON.stringify(e.candidate));
+					};
+
+					remoteConnection.setRemoteDescription(JSON.parse(prompt("OFFER"))).then(function(){
+						return remoteConnection.createAnswer();
+					}).then(function(remoteAnswer){
+						return remoteConnection.setLocalDescription(remoteAnswer);
+					}).then(function(){
+						prompt("OFFER2",JSON.stringify(remoteConnection.localDescription));
+					}).then(function(){
+						return remoteConnection.addIceCandidate(JSON.parse(prompt("ICE2")));
+					}).catch(function(ex){
+						console.log(ex);
+					});
+				}
+			}
+		</script>
+	</body>
 </html>
