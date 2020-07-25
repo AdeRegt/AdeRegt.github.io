@@ -73,7 +73,7 @@
 						console.log(ex);
 					});
 				}else if(reden=="other"){
-					remoteConnection = new RTCPeerConnection({iceServers:[{urls:"stun:stun.services.mozilla.com"}]});
+					remoteConnection = new RTCPeerConnection({iceServers:[{urls:"stun:stun.l.google.com:19302"}]});
 					remoteConnection.ondatachannel = receiveChannelCallback;
 
 					remoteConnection.onicecandidate = function(e){
